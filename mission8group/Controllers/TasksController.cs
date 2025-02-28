@@ -2,15 +2,16 @@ using Microsoft.AspNetCore.Mvc;
 using mission8group.Models;  // Namespace for Task model
 using System.Linq;
 using Microsoft.EntityFrameworkCore; // For LINQ queries
+using TaskModel = mission8group.Models.Task;  // Alias for Task model
 
 namespace TaskManagerApp.Controllers
 {
     public class TasksController : Controller
     {
-        private readonly DbContext _context;
+        private readonly mission8group.DbContext _context;
 
         // Injecting the DbContext directly
-        public TasksController(DbContext context)
+        public TasksController(mission8group.DbContext context)
         {
             _context = context;
         }
@@ -42,7 +43,7 @@ namespace TaskManagerApp.Controllers
         // Update Task: Saves changes after editing
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Task task)
+        public IActionResult Edit(int id, TaskModel task)  // Use TaskModel alias here
         {
             if (id != task.TaskId)
             {

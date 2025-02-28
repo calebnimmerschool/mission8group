@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using mission8group.Models;  // Reference your models (e.g., Task, Category, etc.)
+using mission8group.Models;
+using Task = mission8group.Models.Task; // Reference your models (e.g., Task, Category, etc.)
 
 namespace mission8group  // Your project namespace
 {

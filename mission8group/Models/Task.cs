@@ -18,10 +18,10 @@ namespace mission8group.Models
 
         // Quadrant the task belongs to (required field)
         [Required]
-        public string Quadrant { get; set; }
+        public int Quadrant { get; set; }
 
         // Category (e.g., Home, School, Work, Church)
-        public string Category { get; set; }
+        public string? Category { get; set; }
 
         // Completed status of the task (True or False)
         public bool Completed { get; set; }
