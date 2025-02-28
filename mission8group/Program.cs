@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using mission8group;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext; // Ensure this namespace matches your project's namespace
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<DbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));  // Register DbContext and configure SQL Server
+
+builder.Services.AddControllersWithViews();  // Add MVC services
 
 var app = builder.Build();
 
