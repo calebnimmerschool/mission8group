@@ -1,0 +1,25 @@
+@model mission8group.Models.Task
+
+@{
+    ViewData["Title"] = "Delete Task";
+}
+
+<h1>Delete Task</h1>
+
+<h4>Are you sure you want to delete this task?</h4>
+<hr />
+
+<div>
+    <h5>@Model.Name</h5>
+    <p>Due Date: @Model.DueDate</p>
+    <p>Quadrant: @Model.Quadrant</p>
+    <p>Category: @Model.Category?.CategoryName</p>
+    <p>Completed: @Model.Completed ? "Yes" : "No"</p>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("Quadrants")" class="btn btn-secondary">Cancel</a>
+}
