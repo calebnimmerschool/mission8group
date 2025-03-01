@@ -10,6 +10,11 @@ builder.Services.AddDbContext<TimeManagementContext>(options =>
 {
     options.UseSqlite(builder.Configuration["ConnectionStrings:TaskConnection"]);
 });
+
+
+builder.Services.AddScoped<ITimeManagementFormRepository, TimeManagementFormRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
