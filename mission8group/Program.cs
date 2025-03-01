@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));  // Register DbContext and configure SQL Server
 
-builder.Services.AddControllersWithViews();  // Add MVC services
+// builder.Services.AddControllersWithViews();  // Add MVC services
 
 var app = builder.Build();
 
