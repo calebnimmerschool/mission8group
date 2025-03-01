@@ -1,0 +1,49 @@
+@model IEnumerable<mission8group.Models.TimeManagementForm>
+
+@{
+    ViewData["Title"] = "Task Quadrants";
+}
+
+<h2 class="text-center mb-4">Task Quadrants</h2>
+
+<div class="container">
+    <div class="row">
+        <!-- Quadrant I: Important / Urgent -->
+        <div class="col-md-6 col-lg-6 border p-3">
+            <h4 class="text-danger">Quadrant I: Important / Urgent</h4>
+            @foreach (var task in Model.Where(t => t.Quadrant == 1))
+            {
+                <partial name="_TaskItem" model="task" />
+            }
+        </div>
+
+        <!-- Quadrant II: Important / Not Urgent -->
+        <div class="col-md-6 col-lg-6 border p-3">
+            <h4 class="text-primary">Quadrant II: Important / Not Urgent</h4>
+            @foreach (var task in Model.Where(t => t.Quadrant == 2))
+            {
+                <partial name="_TaskItem" model="task" />
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Quadrant III: Not Important / Urgent -->
+        <div class="col-md-6 col-lg-6 border p-3">
+            <h4 class="text-warning">Quadrant III: Not Important / Urgent</h4>
+            @foreach (var task in Model.Where(t => t.Quadrant == 3))
+            {
+                <partial name="_TaskItem" model="task" />
+            }
+        </div>
+
+        <!-- Quadrant IV: Not Important / Not Urgent -->
+        <div class="col-md-6 col-lg-6 border p-3">
+            <h4 class="text-success">Quadrant IV: Not Important / Not Urgent</h4>
+            @foreach (var task in Model.Where(t => t.Quadrant == 4))
+            {
+                <partial name="_TaskItem" model="task" />
+            }
+        </div>
+    </div>
+</div>
