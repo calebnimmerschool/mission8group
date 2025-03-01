@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using mission8group.Models;
 
 namespace mission8group.Controllers
@@ -21,6 +22,27 @@ namespace mission8group.Controllers
         {
             return View();
         }
+
+        public IActionResult QuadView()
+        {
+            var tasks = _context.Tasks
+                .Include(x => x.Category)  // Include the related Category data
+                .OrderBy(x => x.DueDate)  // Order tasks by Due Date (adjust as needed)
+                .Select(x => new TimeManagementForm
+                {
+                    TaskId = x.TaskId,
+                    Task = x.Task,
+                    DueDate = x.DueDate ?? "",  // Default DateTime.MinValue for NULL DueDate
+                    Quadrant = x.Quadrant,
+                    Completed = x.Completed,  // Default false for NULL Completed
+                    CategoryId = x.CategoryId,  // Handle CategoryId
+                    Category = x.Category,  // Include Category details
+                })
+                .ToList();
+
+            return View(tasks);
+        }
+
 
         [HttpGet]
         public IActionResult AddTask()
