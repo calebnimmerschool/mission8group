@@ -1,8 +1,10 @@
-﻿@model mission8group.Models.TimeManagementForm 
+﻿@model mission8group.Models.TimeManagementForm
 @{
     ViewData["Title"] = "Add/Edit Task";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@* Add a task *@
 
 <div class="container">
     <div class="row justify-content-center">
@@ -40,14 +42,6 @@
                     </div>
 
                     <div class="col-md-6">
-                        @* <label asp-for="Category" class="form-label"></label> *@
-                        @* <select asp-for="Category" class="form-control" required> *@
-                        @*     <option value="">-- Select Category --</option> *@
-                        @*     <option value="Home">Home</option> *@
-                        @*     <option value="School">School</option> *@
-                        @*     <option value="Work">Work</option> *@
-                        @*     <option value="Church">Church</option> *@
-                        @* </select> *@
 
                         <label asp-for="CategoryId" class="form-label"></label>
                         <select asp-for="CategoryId" class="form-control">

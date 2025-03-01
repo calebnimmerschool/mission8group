@@ -69,5 +69,41 @@ namespace mission8group.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var taskToEdit = _context.Tasks.Single(x => x.TaskId == id);
+            ViewBag.Categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
+            return View("AddTask", taskToEdit);
+        }
+
+
+        // Edit Task - POST
+        [HttpPost]
+        public IActionResult Edit(TimeManagementForm updatedTask)
+        {
+            _context.Update(updatedTask);
+            _context.SaveChanges();
+            return RedirectToAction("QuadView");
+        }
+
+        // Delete Task - POST
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var taskToDelete = _context.Tasks.SingleOrDefault(x => x.TaskId == id);
+            if (taskToDelete == null)
+            {
+                return NotFound(); // If task is not found, return an error
+            }
+
+            _context.Tasks.Remove(taskToDelete);
+            _context.SaveChanges();
+
+            return RedirectToAction("QuadView"); // Redirect back to QuadView after deletion
+        }
+
+
     }
 }
